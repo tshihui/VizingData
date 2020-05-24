@@ -1,0 +1,102 @@
+---
+knit: pagedown::chrome_print
+main_topsize: 0.09 #percent coverage of the poster
+main_bottomsize: 0.03
+
+# ESSENTIALS
+title: ''
+# author:
+#   - name: '**Shi Hui Tan**'
+main_findings: "**Vizing your Data!**"
+bottom_findings: 'viz-2'
+main_fontfamily: 'Satisfy'
+poster_height: '11.69in'
+poster_width: '8.27in'
+column_numbers: 1
+
+# COLOUR SCHEME
+#2DF7A1
+primary_colour: '#E7699E30'
+secondary_colour: '#DDE76930' #'#DDCED4'
+accent_colour: '#69E7B2'
+main_textcol: '000000' #'#5F5459'
+# #5F545930
+
+# MAIN SECTION
+main_textsize: '55px'
+
+# BODY SECTION
+title_textsize: '19px'
+author_textsize: '1em'
+body_textsize: '16px'
+body_width: 1
+font_family: 'Lato'
+
+output: 
+  posterdown::posterdown_betterport:
+    self_contained: false
+    pandoc_args: --mathjax
+    number_sections: false
+    export_pdf: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+```
+
+# BOXPLOT (with jitter)
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(forcats)
+data("infert")
+```
+
+```{r plotting, message = FALSE, echo = FALSE, warning=FALSE, fig.height = 3.5}
+ggplot(infert, aes(education, age)) +
+  geom_boxplot(aes(fill=education), alpha=0.8, show.legend = FALSE) + 
+  geom_jitter(, alpha=0.4, show.legend = FALSE) + 
+  xlab('Number of Years of Education') + ylab('Age') + 
+  theme_minimal() + ylim(0,50) + ggtitle('Boxplot with jitter') + 
+  theme(axis.text=element_text(size=12), axis.title = element_text(size=12), 
+        legend.text = element_text(size=12), legend.title = element_text(size=12),
+        plot.title = element_text(size=13))
+```
+```{r plotting code, echo = TRUE, warning=FALSE, message=FALSE, eval=FALSE}
+ggplot(infert, aes(education, age)) +
+  geom_boxplot(aes(fill=education), alpha=0.8, show.legend = FALSE) + 
+  geom_jitter(, alpha=0.4, show.legend = FALSE) + 
+  xlab('Number of Years of Education') + ylab('Age') + ylim(0,50) +
+  theme_minimal() + ggtitle('Boxplot with jitter') + 
+  theme(axis.text=element_text(size=12), 
+        axis.title = element_text(size=12), 
+        legend.text = element_text(size=12), 
+        legend.title = element_text(size=12),
+        plot.title = element_text(size=13))
+```
+
+
+# plot information
+```{r info table, results='asis', include=TRUE}
+library(kableExtra)
+library(dplyr)
+infoCard <- data.frame(title = c('About \r\n\r\n', 
+                     'Common usage \r\n\r\n', 
+                     'Number of / \r\nType of Variables \r\n\r\n', 
+                     'R Package \r\n\r\n', 
+                     'R Function'),
+           info = c('A boxplot is a visual representation of the statistical five numbers summary of a continuous variable (minimum, first quartile, median, third quartile and maximum). It depicts the centering, spread and distribution of the data. Jittering allows clearer visualization of spread of actual data points collected. <br<br><br>', 
+                    'Visualizing differences among different groups <br<br><br>',
+                    '1 numeric <br> 1 per numeric and categorical <br<br><br>', 
+                    'ggplot2<br<br><br>',
+                    'geom_boxplot, geom_jitter'))
+infoCard %>% mutate(title = cell_spec(title, color = "#E7699E", bold = T)) %>% kable(col.names = c('',''), align = 'l', escape=FALSE, booktabs=TRUE, format='html') %>% column_spec(column=1, width = '4.5cm') %>% 
+  column_spec(column=2, width = '13cm')
+```
