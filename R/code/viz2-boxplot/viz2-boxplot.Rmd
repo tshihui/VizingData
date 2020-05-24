@@ -94,10 +94,10 @@ infoCard <- data.frame(title = c('About \r\n\r\n',
                      'Number of / \r\nType of Variables \r\n\r\n', 
                      'R Package \r\n\r\n', 
                      'R Function'),
-           info = c('A boxplot is a visual representation of the statistical five numbers summary of a continuous variable (minimum, first quartile, median, third quartile and maximum). It depicts the centering, spread and distribution of the data. Jittering allows clearer visualization of spread of actual data points collected. <br<br><br>', 
-                    'Visualizing differences among different groups <br<br><br>',
-                    '1 numeric <br> 1 per numeric and categorical <br<br><br>', 
-                    'ggplot2<br<br><br>',
+           info = c('A boxplot is a visual representation of the statistical five numbers summary of a continuous variable (minimum, first quartile, median, third quartile and maximum). It depicts the centering, spread and distribution of the data. Jittering allows clearer visualization of spread of actual data points collected. <br<br>', 
+                    'Visualizing differences among different groups <br<br>',
+                    '<ul><li>1 numeric <br><li> 1 per numeric and categorical <br<br>',
+                    'ggplot2<br<br>',
                     'geom_boxplot, geom_jitter'))
 infoCard %>% mutate(title = cell_spec(title, color = "#E7699E", bold = T)) %>% kable(col.names = c('',''), align = 'l', escape=FALSE, booktabs=TRUE, format='html') %>% column_spec(column=1, width = '4.5cm') %>% 
   column_spec(column=2, width = '13cm')

@@ -26,9 +26,9 @@ main_textcol: '000000' #'#5F5459'
 main_textsize: '55px'
 
 # BODY SECTION
-title_textsize: '20px'
+title_textsize: '19px'
 author_textsize: '1em'
-body_textsize: '17px'
+body_textsize: '16px'
 body_width: 1
 font_family: 'Lato'
 
@@ -93,8 +93,8 @@ infoCard <- data.frame(title = c('About \r\n\r\n',
                      'R Package \r\n\r\n', 
                      'R Function'),
            info = c('A density plot visualizes the distribution of a numeric variable over a continuous interval. A variation of histogram, density plot serves better in determining the distribution shape of data. <br<br><br>', 
-                    'Comparing distributions of a variable between groups <br<br><br>',
-                    '1 numeric <br> 1 per numeric and categorical <br<br><br>', 
+                    'Comparing distributions of a variable between groups <br<br>',
+                    '<ul><li> 1 numeric <br><li> 1 per numeric and categorical <br<br>', 
                     'ggplot2<br<br><br>',
                     'geom_density'))
 infoCard %>% mutate(title = cell_spec(title, color = "#E7699E", bold = T)) %>% kable(col.names = c('',''), align = 'l', escape=FALSE, booktabs=TRUE, format='html') %>% column_spec(column=1, width = '4.5cm') %>% 
