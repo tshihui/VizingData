@@ -57,11 +57,11 @@ library(MASS)
 library(ggplot2)
 library(dplyr)
 data(survey)
-surveyDat <- survey %>% filter(!is.na(Sex))
+sampleData <- survey %>% filter(!is.na(Sex))
 ```
 
 ```{r plotting, message = FALSE, echo = FALSE, warning=FALSE, fig.height = 3.5}
-ggplot(surveyDat) +
+ggplot(sampleData) +
   geom_density(aes(Height, fill=Sex), alpha=0.4) + 
   xlab('Height (cm)') + ylab('Density') + 
   theme_minimal() + 
@@ -70,7 +70,7 @@ ggplot(surveyDat) +
         legend.text = element_text(size=12), legend.title = element_text(size=12))
 ```
 ```{r plotting code, echo = TRUE, warning=FALSE, message=FALSE, eval=FALSE}
-ggplot(surveyDat) +
+ggplot(sampleData) +
   geom_density(aes(Height, color=Sex, fill=Sex), alpha=0.4) + 
   xlab('Height (cm)') + ylab('Density') + 
   theme_minimal() + 
